@@ -131,23 +131,19 @@ export class Order {
       alert('Сначала рассчитайте стоимость, чтобы оформить заявку');
       return;
     }
-
     if (this.orderForm.invalid) {
       alert('Введите имя и корректный телефон');
       return;
     }
-
     const { name, phone, comment } = this.orderForm.getRawValue();
     const trimmedName = (name ?? '').trim();
     const trimmedPhone = (phone ?? '').trim();
     const trimmedComment = (comment ?? '').trim();
-
     const payload = {
       customer: { name: trimmedName, phone: trimmedPhone, comment: trimmedComment },
       calculation: calculation,
       createdAt: new Date().toISOString()
     };
-
     console.log("Заявка сформирована!");
     console.log(payload);
     this.orderId.set(1);
